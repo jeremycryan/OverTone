@@ -1,24 +1,25 @@
 function ProjectCode()
     global SAMPLE_PERIOD PEAK_THRESHOLD VOLUME_THRESHOLD SUBDIVISIONS ...
-        BEAT1_THRESHOLD DECAY BEAT_LENGTH;
-    SAMPLE_PERIOD = 0.04; % Length of time that frequency is sampled over
-    PEAK_THRESHOLD = 0.04; % Cutoff amplitude for peak detection
-    VOLUME_THRESHOLD = 500; % Cutoff amplitude for note vs rest detection
+        BEAT1_THRESHOLD DECAY BEAT_LENGTH SHEET_MUSIC;
+    SAMPLE_PERIOD = 0.1; % Length of time that frequency is sampled over
+    PEAK_THRESHOLD = 0.06; % Cutoff amplitude for peak detection
+    VOLUME_THRESHOLD = 300; % Cutoff amplitude for note vs rest detection
     BEAT1_THRESHOLD = 0.1; % Cutoff amplitude for finding first note played
-    SUBDIVISIONS = 4; % Number of subdivisions per beat
-    DECAY = 0.9; % Expected decrease in note amplitude between samples
+    SUBDIVISIONS = 2; % Number of subdivisions per beat
+    DECAY = 1; % Expected decrease in note amplitude between samples
     BEAT_LENGTH = 15; % Number of extra data points to sample for beat finding
-
+    SHEET_MUSIC = 1; % Desired output format
+    
     clf;
-    transcribe({'TestData2.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+    transcribe({'Fields.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
                 ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
                 ...%'Piccolo.m4a','Flute.m4a'},...
-                {'TestData2.txt'});
+                {'Fields.txt'});
 end
 
 % Turn audio and accelerometer data into notes and rhythms
 function transcribe(file, footfile)
-    global SAMPLE_PERIOD;
+    global SAMPLE_PERIOD SHEET_MUSIC;
     j = round((length(file)+1)/3);
     k = 1+(length(file)>1)+(length(file)>2);
     for i = 1:length(file)
@@ -26,7 +27,9 @@ function transcribe(file, footfile)
         subplot(j, k, i);
         hold on;
         [x, Fs] = audioread(cell2mat(file(i)));
-        plot((1:length(x))/Fs, x);
+        if ~SHEET_MUSIC
+            plot((1:length(x))/Fs, x);
+        end
         title(cell2mat(file(i)));
         
         % If no accel file, sample at regular intervals
@@ -43,18 +46,22 @@ function transcribe(file, footfile)
         beats = t(getBeats(jz));
         beat1 = getBeat1(x)/Fs;
         beats = beats - beats(1) + beat1;
-        plot(beats, zeros(1,length(beats)), 'o');
+        if ~SHEET_MUSIC
+            plot(beats, zeros(1,length(beats)), 'o');
+        end
         
         % Find notes
         music_data = irregularIntervalPlot(x, Fs, SAMPLE_PERIOD, beats);
         real(music_data)
-%         plotMusic(music_data);
+        if SHEET_MUSIC
+            plotMusic(music_data);
+        end
     end
 end
 
 % Plot the notes in an audio file sampled based on the given beats
 function music_data = irregularIntervalPlot(x, Fs, period, beats)
-    global SUBDIVISIONS;
+    global SUBDIVISIONS SHEET_MUSIC;
     beats = interp1(beats, 1:1/SUBDIVISIONS:length(beats));
     notes = zeros(length(beats), 1);
     volumes = zeros(length(beats), 1);
@@ -67,7 +74,9 @@ function music_data = irregularIntervalPlot(x, Fs, period, beats)
         notes(i) = getNote(getFrequency([t, t+period], x, Fs));
         volumes(i) = max(x(round(t*Fs)+1:round((t+period)*Fs)));
     end
-    plot(beats, real(notes), 'k.');
+    if ~SHEET_MUSIC
+        plot(beats, real(notes), 'k.');
+    end
     music_data = groupNotes(notes, volumes);
 end
 
@@ -119,6 +128,15 @@ function freq = getFrequency(interval, x, Fs)
     f = (I-1)*Fs/length(subx)/2;
     f2 = I2*Fs/length(subx)/2;
     freq = mean([f, f2]);
+    
+%     if(interval(1)>3 & interval(1)<3.1)
+%         fx = linspace(-Fs/2, (Fs/2 - Fs/length(subx)), 2*length(subx));
+%         plot(fx, fftshift(fourier));
+%         length(fourier)
+%         f
+%         f2
+%         return;
+%     end
     if max(fourier)<VOLUME_THRESHOLD*period
         freq = 1i;
     end

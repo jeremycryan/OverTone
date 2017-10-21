@@ -7,20 +7,18 @@ function plotMusic(music_data)
     
     subplot(2,1,1);
     hold on;
-    drawStaff(song_length*1.8);
+    drawStaff(song_length*3.2);
     subplot(2,1,2);
     hold on;
-    drawStaff(song_length*1.8);
+    drawStaff(song_length*3.2);
     times = zeros(1, length(durations));
     times(1) = durations(1);
     for i = 2:length(durations)
         times(i) = durations(i) + times(i - 1);
     end
     times = times - durations(1);
-    subplot(2,1,1);
-    ylim([-9,9]);
+    subplot(2,
     drawNotes(times, durations, notes);
-    ylim([-9,9]);
 %     axis equal tight;
 end
 
@@ -43,10 +41,6 @@ function drawNotes(time, durations, pitch)
     x_offset = 0;
 
     for i = 1:length(time)
-        if i==round(length(time)/2)
-            subplot(2,1,2);
-            x_offset = 0;
-        end
         scale = [0.7, 0.4];
         note_duration = durations(i);
         while note_duration >= 1
