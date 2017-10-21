@@ -1,17 +1,19 @@
-global SAMPLE_PERIOD PEAK_THRESHOLD VOLUME_THRESHOLD SUBDIVISIONS ...
-    BEAT1_THRESHOLD DECAY;
-SAMPLE_PERIOD = 0.04; % Length of time that frequency is sampled over
-PEAK_THRESHOLD = 0.04; % Cutoff amplitude for peak detection
-VOLUME_THRESHOLD = 500; % Cutoff amplitude for note vs rest detection
-BEAT1_THRESHOLD = 0.1; % Cutoff amplitude for finding first note played
-SUBDIVISIONS = 4; % Number of subdivisions per beat
-DECAY = 0.9; % Expected decrease in note amplitude between samples
+function ProjectCode()
+    global SAMPLE_PERIOD PEAK_THRESHOLD VOLUME_THRESHOLD SUBDIVISIONS ...
+        BEAT1_THRESHOLD DECAY;
+    SAMPLE_PERIOD = 0.04; % Length of time that frequency is sampled over
+    PEAK_THRESHOLD = 0.04; % Cutoff amplitude for peak detection
+    VOLUME_THRESHOLD = 500; % Cutoff amplitude for note vs rest detection
+    BEAT1_THRESHOLD = 0.1; % Cutoff amplitude for finding first note played
+    SUBDIVISIONS = 4; % Number of subdivisions per beat
+    DECAY = 0.9; % Expected decrease in note amplitude between samples
 
-clf;
-transcribe({'TestData2.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
-            ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
-            ...%'Piccolo.m4a','Flute.m4a'},...
-            {'TestData2.txt'});
+    clf;
+    transcribe({'TestData2.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+                ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
+                ...%'Piccolo.m4a','Flute.m4a'},...
+                {'TestData2.txt'});
+end
 
 % Turn audio and accelerometer data into notes and rhythms
 function transcribe(file, footfile)
