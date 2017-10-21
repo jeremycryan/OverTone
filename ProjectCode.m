@@ -8,9 +8,9 @@ SUBDIVISIONS = 4; % Number of subdivisions per beat
 DECAY = 0.9; % Expected decrease in note amplitude between samples
 
 clf;
-transcribe({'TestData2.m4a','TestData1.m4a','FastPiano.m4a',...
-            'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
-            'Piccolo.m4a','Flute.m4a'},...
+transcribe({'TestData2.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+            ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
+            ...%'Piccolo.m4a','Flute.m4a'},...
             {'TestData2.txt'});
 
 % Turn audio and accelerometer data into notes and rhythms
@@ -23,7 +23,7 @@ function transcribe(file, footfile)
         subplot(j, k, i);
         hold on;
         [x, Fs] = audioread(cell2mat(file(i)));
-        plot((1:length(x))/Fs, x);
+%         plot((1:length(x))/Fs, x);
         title(cell2mat(file(i)));
         
         % If no accel file, sample at regular intervals
@@ -40,15 +40,16 @@ function transcribe(file, footfile)
         beats = t(getBeats(jz));
         beat1 = getBeat1(x)/Fs;
         beats = beats - beats(1) + beat1;
-        plot(beats, zeros(1,length(beats)), 'o');
+%         plot(beats, zeros(1,length(beats)), 'o');
         
         % Find notes
-        irregularIntervalPlot(x, Fs, SAMPLE_PERIOD, beats);
+        music_data = irregularIntervalPlot(x, Fs, SAMPLE_PERIOD, beats);
+        plotMusic(music_data);
     end
 end
 
 % Plot the notes in an audio file sampled based on the given beats
-function irregularIntervalPlot(x, Fs, period, beats)
+function music_data = irregularIntervalPlot(x, Fs, period, beats)
     global SUBDIVISIONS;
     beats = interp1(beats, 1:1/SUBDIVISIONS:length(beats));
     notes = zeros(length(beats), 1);
@@ -62,8 +63,8 @@ function irregularIntervalPlot(x, Fs, period, beats)
         notes(i) = getNote(getFrequency([t, t+period], x, Fs));
         volumes(i) = max(x(round(t*Fs)+1:round((t+period)*Fs)));
     end
-    plot(beats, real(notes), 'k.');
-    groupNotes(notes, volumes)
+%     plot(beats, real(notes), 'k.');
+    music_data = groupNotes(notes, volumes);
 end
 
 % Group notes that are the same pitch together
