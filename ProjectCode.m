@@ -44,6 +44,7 @@ function transcribe(file, footfile)
         
         % Find notes
         music_data = irregularIntervalPlot(x, Fs, SAMPLE_PERIOD, beats);
+        real(music_data)
         plotMusic(music_data);
     end
 end
