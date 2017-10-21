@@ -1,12 +1,11 @@
 function plotMusic(music_data)
     hold on;
-%     ylim([-7, 7]);
 
     notes = music_data(1, :);
     durations = music_data(2, :);
     song_length = sum(durations);
 
-    drawStaff(song_length*2);
+    drawStaff(song_length*3);
     times = zeros(1, length(durations));
     times(1) = durations(1);
     for i = 2:length(durations)

@@ -1,17 +1,18 @@
 global SAMPLE_PERIOD PEAK_THRESHOLD VOLUME_THRESHOLD SUBDIVISIONS ...
-    BEAT1_THRESHOLD DECAY;
+    BEAT1_THRESHOLD DECAY BEAT_LENGTH;
 SAMPLE_PERIOD = 0.04; % Length of time that frequency is sampled over
 PEAK_THRESHOLD = 0.04; % Cutoff amplitude for peak detection
 VOLUME_THRESHOLD = 500; % Cutoff amplitude for note vs rest detection
 BEAT1_THRESHOLD = 0.1; % Cutoff amplitude for finding first note played
 SUBDIVISIONS = 4; % Number of subdivisions per beat
-DECAY = 0.9; % Expected decrease in note amplitude between samples
+DECAY = 4; % Expected decrease in note amplitude between samples
+BEAT_LENGTH = 15; % Number of extra data points to sample for beat finding
 
 clf;
-transcribe({'TestData2.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+transcribe({'Flute.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
             ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
             ...%'Piccolo.m4a','Flute.m4a'},...
-            {'TestData2.txt'});
+            {'Flute.txt'});
 
 % Turn audio and accelerometer data into notes and rhythms
 function transcribe(file, footfile)
@@ -23,7 +24,7 @@ function transcribe(file, footfile)
         subplot(j, k, i);
         hold on;
         [x, Fs] = audioread(cell2mat(file(i)));
-%         plot((1:length(x))/Fs, x);
+        plot((1:length(x))/Fs, x);
         title(cell2mat(file(i)));
         
         % If no accel file, sample at regular intervals
@@ -40,12 +41,12 @@ function transcribe(file, footfile)
         beats = t(getBeats(jz));
         beat1 = getBeat1(x)/Fs;
         beats = beats - beats(1) + beat1;
-%         plot(beats, zeros(1,length(beats)), 'o');
+        plot(beats, zeros(1,length(beats)), 'o');
         
         % Find notes
         music_data = irregularIntervalPlot(x, Fs, SAMPLE_PERIOD, beats);
         real(music_data)
-        plotMusic(music_data);
+%         plotMusic(music_data);
     end
 end
 
@@ -64,7 +65,7 @@ function music_data = irregularIntervalPlot(x, Fs, period, beats)
         notes(i) = getNote(getFrequency([t, t+period], x, Fs));
         volumes(i) = max(x(round(t*Fs)+1:round((t+period)*Fs)));
     end
-%     plot(beats, real(notes), 'k.');
+    plot(beats, real(notes), 'k.');
     music_data = groupNotes(notes, volumes);
 end
 
@@ -152,13 +153,13 @@ end
 
 % Determine the time indices of foot taps
 function beats = getBeats(a)
-    global BEAT1_THRESHOLD;
+    global BEAT1_THRESHOLD BEAT_LENGTH;
     beats = [];
     m = max(a);
     for i = 1:length(a)
-        if isempty(beats) || (i-beats(end)) > 15
+        if isempty(beats) || (i-beats(end)) > BEAT_LENGTH
             if a(i) > m*BEAT1_THRESHOLD
-                [~,j] = max(a(i:i+15));
+                [~,j] = max(a(i:i+BEAT_LENGTH));
                 beats = cat(1,beats,j+i);
             end
         end
@@ -167,12 +168,12 @@ end
 
 % Determine the time index of the first note played
 function beat1 = getBeat1(x)
-    global BEAT1_THRESHOLD;
+    global BEAT1_THRESHOLD BEAT_LENGTH;
     beat1 = 0;
     m = max(x);
     for i = 1:length(x)
         if x(i) > m*BEAT1_THRESHOLD
-            [~,j] = max(x(i:i+15));
+            [~,j] = max(x(i:i+BEAT_LENGTH));
             beat1 = j+i;
             return
         end
