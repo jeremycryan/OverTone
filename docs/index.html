@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>PitchPlot</title>
+		<title>OverTone</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -26,7 +26,7 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">PitchPlot</a></h1>
+				<h1><a href="index.html">OverTone</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
@@ -45,29 +45,28 @@
 			<section id="one" class="wrapper style1 special">
 				<div class="container">
 					<header class="major">
-						<h2>Fourier Analysis</h2>
-						<p>We did a thing.</p>
+						<h2>How It Works</h2>
+						<p>We combined accelerometer data from a tapping foot with audio data to determine notes and rhythms.</p>
 					</header>
 					<div class="row 150%">
 						<div class="4u 12u$(medium)">
 							<section class="box">
-								<i class="icon big rounded color1 fa-cloud"></i>
-								<h3>Part 1</h3>
-								<p>Blah blah transform blah blah frequency domain blah blah blah.</p>
+								<img src="icon.jpg" style="width:125px; height:125px">								<h3>Beat Synchronization</h3>
+								<p>OverTone captures spikes in upward acceleration from a phone accelerometer on the user's foot to identify taps.</p>
 							</section>
 						</div>
 						<div class="4u 12u$(medium)">
 							<section class="box">
-								<i class="icon big rounded color9 fa-desktop"></i>
-								<h3>Consectetur adipisicing</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime.</p>
+								<img src="icon2.jpg" style="width:125px; height:125px">
+								<h3>Fourier Analysis</h3>
+								<p>OverTone applies a short-term Fourier transform to audio data to determine the most represented pitch during each beat.</p>
 							</section>
 						</div>
 						<div class="4u$ 12u$(medium)">
 							<section class="box">
-								<i class="icon big rounded color6 fa-rocket"></i>
-								<h3>Adipisicing elit totam</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
+								<img src="icon3.jpg" style="width:125px; height:125px">
+								<h3>Pitch Discretization</h3>
+								<p>OverTone maps each frequency to the closest musical note, which can then be easily visualized as sheet music.</p>
 							</section>
 						</div>
 					</div>
@@ -78,34 +77,10 @@
 			<section id="two" class="wrapper style2 special">
 				<div class="container">
 					<header class="major">
-						<h2>Lorem ipsum dolor sit</h2>
+						<h2></h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.</p>
 					</header>
-					<section class="profiles">
-						<div class="row">
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Lorem ipsum</h4>
-								<p>Lorem ipsum dolor</p>
-							</section>
-							<section class="3u 6u$(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Voluptatem dolores</h4>
-								<p>Ullam nihil repudi</p>
-							</section>
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Doloremque quo</h4>
-								<p>Harum corrupti quia</p>
-							</section>
-							<section class="3u$ 6u$(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Voluptatem dicta</h4>
-								<p>Et natus sapiente</p>
-							</section>
-						</div>
-					</section>
-					<footer>
+									<footer>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!</p>
 						<ul class="actions">
 							<li>
@@ -196,7 +171,7 @@
 					<div class="row">
 						<div class="8u 12u$(medium)">
 							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved.</li>
+								<li>&copy; OverTone. All rights reserved.</li>
 								<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
 								<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
 							</ul>
