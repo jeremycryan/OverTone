@@ -48,7 +48,7 @@
 				<div class="container">
 					<header class="major">
 						<h2>What It Does</h2>
-						<p>We combined accelerometer data from a tapping foot with audio data to automatically transcribe music.</p>
+						<p>We combined audio data with accelerometer data from a tapping foot to automatically transcribe music.</p>
 					</header>
 					<div class="row 150%">
 						<div class="4u 12u$(medium)">
@@ -99,9 +99,10 @@ Aspiring musicians can now play their favorite songs, without the difficult and 
 									<footer>
 						<p>OverTone collects two sets of data from the user: accelerometer data, from a phone on their foot, and an audio recording.</p>
 <div>
-<p style="text-align: justify;"><img src="AccelGraph.jpg" align="right" style="width:360px; height:240px">The first thing OverTone looks at is the accerometer data. This acts as a map between time in seconds and time in "beats," and allows our application to differentiate between note lengths in a form useful to musicians. To do this, OverTone looks for sharp spikes in vertical acceleration in the phone's coordinate system, which occur when your foot impacts the ground. Because these readings are recorded at the same time as the audio, it allows OverTone to "keep the beat" - even as the user changes tempo.<br><br><br></p></div>
+<p style="text-align: justify;clear: both;"><img src="AccelGraph.jpg" align="right" style="width:360px; height:240px; margin:0px 0px 0px 20px;">The first thing OverTone looks at is the accerometer data. This acts as a map between time in seconds and time in "beats," allowing our application to differentiate between note lengths in a form useful to musicians. To do this, OverTone looks for sharp spikes in vertical acceleration in the phone's coordinate system, which occur when your foot impacts the ground. Because these readings are recorded at the same time as the audio, it allows OverTone to "keep the beat" - even as the user changes tempo.</p></div>
 <div>
-<p style="text-align: justify;"><img src="STFTGraph.jpg" align="left" style="width:360px; height:240px">After the beat profile is taken, OverTone samples short audio segments to analyze their pitch. For each of these samples, we use Fourier analysis to find the fundamental pitch, which generally appears as a spike at the corresponding frequency. <br><br> To get a clean result, our application has to differentiate between the actual played frequency and overtones of that note. These overtones appear as regularly-spaced spikes in the frequency graph above the fundamental pitch; our algorithm only looks at the first peak.</p></div><br>
+<br>
+<p style="text-align: justify;clear: right;""><img src="STFTGraph.jpg" align="left" style="width:360px; height:240px; margin:0px 20px 0px 0px;">After the beat profile is taken, OverTone samples short audio segments to analyze their pitch. For each of these samples, we use Fourier analysis to find the fundamental pitch, which generally appears as a spike at the corresponding frequency. <br><br> To get a clean result, our application has to differentiate between the actual played frequency and overtones of that note. These overtones appear as regularly-spaced spikes in the frequency graph above the fundamental pitch; our algorithm only looks at the first peak.</p></div><br>
 
 
 						<ul class="actions">
@@ -112,7 +113,38 @@ Aspiring musicians can now play their favorite songs, without the difficult and 
 					</footer>
 				</div>
 			</section>
+<!-- Three -->
+			<section id="two" class="wrapper style2 special">
+				<div class="container">
+					<header class="major">
+						<h2>Testing</h2>
+						<p>OverTone has been tested on 5 different musical instruments, as well as the human voice.</p>
+					</header>
+									<footer>
+						<div>
+<p style="text-align: justify;clear: both;"><img src="AccelGraph.jpg" align="right" style="width:360px; height:240px; margin:0px 0px 0px 20px;">The audio processing algorithm was first tested in isolation, with frequency samples taken at regular intervals. A range of different instruments were tested, including piano, flute, piccolo, trumpet, trombone, and voice. The algorithm can interpret woodwind and piano notes with a high degree of accuracy, but near the lower range of singing and brass instruments the consistency drops considerably. </p>
+<br>
+<p style="text-align: justify;clear: right;""><img src="STFTGraph.jpg" align="left" style="width:360px; height:240px; margin:0px 20px 0px 0px;">Next, we tested whether the beat recognition lined up with the audio file. Because we were collecting the audio and accelerometer data separately, we had the algorithm line up the first tap with the first note played. Each additional upward spike in the vertical acceleration was recorded as a tap and plotted against the audio data, and we saw very strong agreement between them.</p><br>
 
+<p style="text-align: justify;clear: left;""><img src="STFTGraph.jpg" align="right" style="width:360px; height:240px; margin:0px 0px 0px 20px;">Finally, we integrated the beat recognition and audio processing together, to produce actual output. One of the cleaner results is shown to the right, from the song "Crossing Field" played on piano.</p>
+
+<p style="text-align: justify;clear: right;""><br>While OverTone is fully functional in the right conditions, several improvements remain to be made. The recognition of low notes is still unreliable, making OverTone ineffective for certain instruments. Additionally, the algorithm is unreliable over time intervals shorter than eigth notes, because the small discrepancy between the player's foot taps and the actual beat starts to become an issue.</p>
+
+<p style="text-align: justify;clear: right;"">The most important next step in OverTone's development is adding the ability to interpret multiple simultaneous notes. While we anticipate that differentiating overtones from additional notes played will be difficult, we are cautiously optimistic that the problem can be solved with linear regression. Additionally, OverTone should ultimately be converted into a mobile app, allowing the accelerometer and audio data to be collected from the same device. Finally, the foot tapping element could potentially be eliminated by recognizing the beat through Fourier analysis of the music instead, which would make OverTone much easier to use.</p>
+
+</div><br>
+
+
+
+
+						<ul class="actions">
+							<li>
+								<a href="generic.html" class="button big">Watch a Video</a>
+							</li>
+						</ul>
+					</footer>
+				</div>
+			</section>
 
 		<!-- Footer -->
 			<footer id="footer">
