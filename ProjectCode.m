@@ -11,7 +11,7 @@ function ProjectCode()
     SHEET_MUSIC = 0; % Desired output format
     
     clf;
-    transcribe({'Trombone.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+    transcribe({'Piano.m4a','Flute.m4a','Piccolo.m4a','Trumpet.m4a','Trombone.m4a','Voice.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
                 ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
                 ...%'Piccolo.m4a','Flute.m4a'},...
                 {});
@@ -47,7 +47,7 @@ function transcribe(file, footfile)
         beat1 = getBeat1(x)/Fs;
         beats = beats - beats(1) + beat1;
         if ~SHEET_MUSIC
-%             plot(beats, zeros(1,length(beats)), 'o');
+            plot(beats, zeros(1,length(beats)), 'o');
         end
         
         % Find notes
@@ -111,7 +111,7 @@ function regularIntervalPlot(x, Fs, period)
         t = i*period;
         notes(i) = getNote(getFrequency([t, t+period], x, Fs));
     end
-%     plot((1:length(notes))*period, real(notes), 'k.');
+    plot((1:length(notes))*period, real(notes), 'k.');
 end
 
 % Determine the frequency of audio data over a given time interval
@@ -138,7 +138,7 @@ function freq = getFrequency(interval, x, Fs)
 %         return;
 %     end
     if max(fourier)<VOLUME_THRESHOLD*period
-        freq = 1i;
+        freq = 0;
     end
 end
 
@@ -148,7 +148,7 @@ function [peak, I] = firstPeak(data, threshold)
     data = data - mean(data(1:i));% - data(round(i*5/8));
     for j = 1:int16(0.6*i)
         if (data(j)>threshold*m) && (data(j+1)<data(j))
-            for overtone = [6,4,3,2]
+            for overtone = [7,6,4,3,2]
                 if abs(i/j-overtone)<.1
                     peak = data(j);
                     I = i/overtone;
