@@ -30,14 +30,16 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li><a href="https://github.com/jeremycryan/QEA2-Module-2-Project">Source Code</a></li>
-					</ul>
+						<li><a href="generic.html">Media</a></li>
+						<li><a href="https://github.com/jeremycryan/OverTone">Source Code</a></li>
+											</ul>
 				</nav>
 			</header>
 
+
 		<!-- Banner -->
 			<section id="banner">
-				<h2>Automatic Music Transcription</h2>
+				<h2>OverTone</h2>
 				<p>Helping musicians everywhere convert music into sheet music.</p>
 			</section>
 
@@ -45,8 +47,8 @@
 			<section id="one" class="wrapper style1 special">
 				<div class="container">
 					<header class="major">
-						<h2>How It Works</h2>
-						<p>We combined accelerometer data from a tapping foot with audio data to determine notes and rhythms.</p>
+						<h2>What It Does</h2>
+						<p>We combined accelerometer data from a tapping foot with audio data to automatically transcribe music.</p>
 					</header>
 					<div class="row 150%">
 						<div class="4u 12u$(medium)">
@@ -73,101 +75,50 @@
 				</div>
 			</section>
 
-		<!-- Two -->
-			<section id="two" class="wrapper style2 special">
+			<section id="one" class="wrapper style2 special">
 				<div class="container">
 					<header class="major">
-						<h2></h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.</p>
+						<h2>Who It's For</h2>
+						<p>OverTone is a creative tool for musicians and composers.</p>
+					</header>
+<footer style="text-align: justify;">
+Aspiring musicians can now play their favorite songs, without the difficult and tedious process of transcribing by hand. With OverTone, transcription is as simple as tapping along to an audio recording. This makes transcription more accessible to musicians who are still developing their musical ear, and saves time for more experienced players. <br><br> OverTone also accelerates the musical composition process, allowing composers to instantly transfer ideas from their fingers to the page. Now, composers can focus more on what they do best - making music.
+</footer>
+														</div>
+				</div>
+			</section>
+
+
+		<!-- Two -->
+			<section id="two" class="wrapper style1 special">
+				<div class="container">
+					<header class="major">
+						<h2>How It Works</h2>
+						<p>OverTone applies motion analysis, frequency analysis, and advanced filtering algorithms to transcribe music.</p>
 					</header>
 									<footer>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!</p>
+						<p>OverTone collects two sets of data from the user: accelerometer data, from a phone on their foot, and an audio recording.</p>
+<div>
+<p style="text-align: justify;"><img src="AccelGraph.jpg" align="right" style="width:360px; height:240px">The first thing OverTone looks at is the accerometer data. This acts as a map between time in seconds and time in "beats," and allows our application to differentiate between note lengths in a form useful to musicians. To do this, OverTone looks for sharp spikes in vertical acceleration in the phone's coordinate system, which occur when your foot impacts the ground. Because these readings are recorded at the same time as the audio, it allows OverTone to "keep the beat" - even as the user changes tempo.<br><br><br></p></div>
+<div>
+<p style="text-align: justify;"><img src="STFTGraph.jpg" align="left" style="width:360px; height:240px">After the beat profile is taken, OverTone samples short audio segments to analyze their pitch. For each of these samples, we use Fourier analysis to find the fundamental pitch, which generally appears as a spike at the corresponding frequency. <br><br> To get a clean result, our application has to differentiate between the actual played frequency and overtones of that note. These overtones appear as regularly-spaced spikes in the frequency graph above the fundamental pitch; our algorithm only looks at the first peak.</p></div><br>
+
+
 						<ul class="actions">
 							<li>
-								<a href="#" class="button big">Lorem ipsum dolor sit</a>
+								<a href="https://github.com/jeremycryan/OverTone" class="button big">View the Code</a>
 							</li>
 						</ul>
 					</footer>
 				</div>
 			</section>
 
-		<!-- Three -->
-			<section id="three" class="wrapper style3 special">
-				<div class="container">
-					<header class="major">
-						<h2>Consectetur adipisicing elit</h2>
-						<p>Lorem ipsum dolor sit amet. Delectus consequatur, similique quia!</p>
-					</header>
-				</div>
-				<div class="container 50%">
-					<form action="#" method="post">
-						<div class="row uniform">
-							<div class="6u 12u$(small)">
-								<input name="name" id="name" value="" placeholder="Name" type="text">
-							</div>
-							<div class="6u$ 12u$(small)">
-								<input name="email" id="email" value="" placeholder="Email" type="email">
-							</div>
-							<div class="12u$">
-								<textarea name="message" id="message" placeholder="Message" rows="6"></textarea>
-							</div>
-							<div class="12u$">
-								<ul class="actions">
-									<li><input value="Send Message" class="special big" type="submit"></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div>
-			</section>
 
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="container">
-					<section class="links">
+
 						<div class="row">
-							<section class="3u 6u(medium) 12u$(small)">
-								<h3>This is a foot.</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Nesciunt itaque, alias possimus</a></li>
-									<li><a href="#">Optio rerum beatae autem</a></li>
-									<li><a href="#">Nostrum nemo dolorum facilis</a></li>
-									<li><a href="#">Quo fugit dolor totam</a></li>
-								</ul>
-							</section>
-							<section class="3u 6u$(medium) 12u$(small)">
-								<h3>Culpa quia, nesciunt</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Reiciendis dicta laboriosam enim</a></li>
-									<li><a href="#">Corporis, non aut rerum</a></li>
-									<li><a href="#">Laboriosam nulla voluptas, harum</a></li>
-									<li><a href="#">Facere eligendi, inventore dolor</a></li>
-								</ul>
-							</section>
-							<section class="3u 6u(medium) 12u$(small)">
-								<h3>Neque, dolore, facere</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Distinctio, inventore quidem nesciunt</a></li>
-									<li><a href="#">Explicabo inventore itaque autem</a></li>
-									<li><a href="#">Aperiam harum, sint quibusdam</a></li>
-									<li><a href="#">Labore excepturi assumenda</a></li>
-								</ul>
-							</section>
-							<section class="3u$ 6u$(medium) 12u$(small)">
-								<h3>Illum, tempori, saepe</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Recusandae, culpa necessita nam</a></li>
-									<li><a href="#">Cupiditate, debitis adipisci blandi</a></li>
-									<li><a href="#">Tempore nam, enim quia</a></li>
-									<li><a href="#">Explicabo molestiae dolor labore</a></li>
-								</ul>
-							</section>
-						</div>
-					</section>
 					<div class="row">
 						<div class="8u 12u$(medium)">
 							<ul class="copyright">
@@ -176,23 +127,7 @@
 								<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
 							</ul>
 						</div>
-						<div class="4u$ 12u$(medium)">
-							<ul class="icons">
-								<li>
-									<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
-								</li>
-								<li>
-									<a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
-								</li>
-								<li>
-									<a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
-								</li>
-								<li>
-									<a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
-								</li>
-							</ul>
-						</div>
-					</div>
+
 				</div>
 			</footer>
 

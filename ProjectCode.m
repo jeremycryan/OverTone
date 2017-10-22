@@ -8,7 +8,7 @@ function ProjectCode()
     SUBDIVISIONS = 2; % Number of subdivisions per beat
     DECAY = 1; % Expected decrease in note amplitude between samples
     BEAT_LENGTH = 15; % Number of extra data points to sample for beat finding
-    SHEET_MUSIC = 1; % Desired output format
+    SHEET_MUSIC = 0; % Desired output format
     
     clf;
     transcribe({'Fields.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...

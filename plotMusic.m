@@ -6,9 +6,12 @@ function plotMusic(music_data)
     song_length = sum(durations);
     
     subplot(2,1,1);
+    set(gca, 'xtick', [], 'ytick', [])%, 'xcolor', [1, 1, 1], 'ycolor', [1, 1, 1])
     hold on;
+    title('Crossing Field');
     drawStaff(song_length*1.8);
     subplot(2,1,2);
+    set(gca, 'xtick', [], 'ytick', [])%, 'xcolor', [1, 1, 1], 'ycolor', [1, 1, 1])
     hold on;
     drawStaff(song_length*1.8);
     times = zeros(1, length(durations));
@@ -205,9 +208,9 @@ function drawCircle(pos, rad, fill)
 end
 
 function drawFlat(pos)
-    xpos = pos(1) - 1;
-    ypos = pos(2) + 0.2;
-    scale = [0.2, 0.6];
+    xpos = pos(1) - 1.2;
+    ypos = pos(2) + 0.4;
+    scale = [0.4, 1.1];
     [img, map, alpha] = imread('Flat.png');
     h = image('CData', img, 'XData', [xpos - scale(1), xpos + scale(1)], 'YData', [ypos - scale(2), ypos + scale(2)]);
     set(h, 'AlphaData', alpha);
