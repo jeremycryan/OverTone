@@ -11,10 +11,10 @@ function ProjectCode()
     SHEET_MUSIC = 0; % Desired output format
     
     clf;
-    transcribe({'Fields.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+    transcribe({'Trombone.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
                 ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
                 ...%'Piccolo.m4a','Flute.m4a'},...
-                {'Fields.txt'});
+                {});
 end
 
 % Turn audio and accelerometer data into notes and rhythms
@@ -47,7 +47,7 @@ function transcribe(file, footfile)
         beat1 = getBeat1(x)/Fs;
         beats = beats - beats(1) + beat1;
         if ~SHEET_MUSIC
-            plot(beats, zeros(1,length(beats)), 'o');
+%             plot(beats, zeros(1,length(beats)), 'o');
         end
         
         % Find notes
@@ -111,7 +111,7 @@ function regularIntervalPlot(x, Fs, period)
         t = i*period;
         notes(i) = getNote(getFrequency([t, t+period], x, Fs));
     end
-    plot((1:length(notes))*period, real(notes), 'k.');
+%     plot((1:length(notes))*period, real(notes), 'k.');
 end
 
 % Determine the frequency of audio data over a given time interval
