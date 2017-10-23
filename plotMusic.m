@@ -2,17 +2,28 @@ function plotMusic(music_data)
     hold on;
 
     notes = music_data(1, :);
+    for i = 1:length(notes)
+        if abs(notes(i)) > 9999
+            notes(i) = 1j;
+        end
+    end
     durations = music_data(2, :);
     song_length = sum(durations);
-    
-    subplot(2,1,1);
-    set(gca, 'xtick', [], 'ytick', [])%, 'xcolor', [1, 1, 1], 'ycolor', [1, 1, 1])
-    hold on;
-    title('Crossing Field');
-    drawStaff(song_length*1.8);
-    subplot(2,1,2);
-    set(gca, 'xtick', [], 'ytick', [])%, 'xcolor', [1, 1, 1], 'ycolor', [1, 1, 1])
-    hold on;
+    if song_length > 35
+        subplot(2,1,1);
+        set(gca, 'xtick', [], 'ytick', [])%, 'xcolor', [1, 1, 1], 'ycolor', [1, 1, 1])
+        hold on;
+        %title('Crossing Field');
+        drawStaff(song_length*1.8);
+        subplot(2,1,2);
+        set(gca, 'xtick', [], 'ytick', [])%, 'xcolor', [1, 1, 1], 'ycolor', [1, 1, 1])
+        hold on;
+    else
+        subplot(1, 1, 1);
+        hold on;
+        drawStaff(song_length*3.5);
+        set(gca, 'xtick', [], 'ytick', [])
+    end
     drawStaff(song_length*1.8);
     times = zeros(1, length(durations));
     times(1) = durations(1);
@@ -20,11 +31,13 @@ function plotMusic(music_data)
         times(i) = durations(i) + times(i - 1);
     end
     times = times - durations(1);
-    subplot(2,1,1);
+    if song_length > 35
+        subplot(2,1,1);
+    end
     ylim([-9,9]);
     drawNotes(times, durations, notes);
     ylim([-9,9]);
-%     axis equal tight;
+    %axis equal tight;
 end
 
 function drawStaff(song_length)
@@ -46,7 +59,7 @@ function drawNotes(time, durations, pitch)
     x_offset = 0;
 
     for i = 1:length(time)
-        if i==round(length(time)/2)
+        if i==round(length(time)/2) && length(time) > 35
             subplot(2,1,2);
             x_offset = 0;
         end

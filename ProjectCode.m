@@ -8,13 +8,13 @@ function ProjectCode()
     SUBDIVISIONS = 2; % Number of subdivisions per beat
     DECAY = 1; % Expected decrease in note amplitude between samples
     BEAT_LENGTH = 15; % Number of extra data points to sample for beat finding
-    SHEET_MUSIC = 0; % Desired output format
+    SHEET_MUSIC = 1; % Desired output format
     
     clf;
-    transcribe({'Piano.m4a','Flute.m4a','Piccolo.m4a','Trumpet.m4a','Trombone.m4a','Voice.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
+    transcribe({'Violin.m4a'},...%,'TestData1.m4a','FastPiano.m4a',...
                 ...%'LowPiano.m4a','Trombone.m4a','Trumpet.m4a',...
                 ...%'Piccolo.m4a','Flute.m4a'},...
-                {});
+                {'Violin.txt'});
 end
 
 % Turn audio and accelerometer data into notes and rhythms
@@ -75,7 +75,7 @@ function music_data = irregularIntervalPlot(x, Fs, period, beats)
         volumes(i) = max(x(round(t*Fs)+1:round((t+period)*Fs)));
     end
     if ~SHEET_MUSIC
-        plot(beats, real(notes), 'k.');
+        plot(beats, real(notes), 'k.', 'MarkerSize', 13);
     end
     music_data = groupNotes(notes, volumes);
 end
@@ -129,7 +129,7 @@ function freq = getFrequency(interval, x, Fs)
     f2 = I2*Fs/length(subx)/2;
     freq = mean([f, f2]);
     
-%     if(interval(1)>3 & interval(1)<3.1)
+%     if(interval(1)>5 & interval(1)<5.1)
 %         fx = linspace(-Fs/2, (Fs/2 - Fs/length(subx)), 2*length(subx));
 %         plot(fx, fftshift(fourier));
 %         length(fourier)

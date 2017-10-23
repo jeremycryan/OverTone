@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+	Transit by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>OverTone</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">OverTone</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="generic.html">Media</a></li>
+						<li><a href="https://github.com/jeremycryan/OverTone">Source Code</a></li>
+											</ul>
+				</nav>
+			</header>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major">
+						<h2>Transcriptions</h2>
+						<p>Testing OverTone with a variety of instruments.</p>
+					</header>
+                    <div align="center">
+                    For each instrument, the original part is shown, followed by OverTone's transcription.
+                    </div>
+				</div>
+                                        <div align="center">
+            	<img src="PiccoloScale.png" style="width:800px;">
+                <img src="PiccoloScalePlot.png" style="width:900px;">
+                <div>
+OverTone's piccolo transcription was quite accurate, with only one error where an eigth note was lengthened to a quarter note. This may be because our algorithm falsely detected an additional foot tap.
+                </div>
+                <hr />
+            </div>
+                                        <div align="center">
+            	<img src="FluteScale.png" style="width:800px;">
+                <img src="FluteScalePlot.png" style="width:900px;">
+            </div>
+            <div align="center">
+            OverTone perfectly transcribed the notes and rhythms for the flute scale. The quarter notes were interpreted as eigth notes and eigth rests because the musician played them in a short style.
+            </div>
+            <hr />	
+                        	<img src="ViolinScale.png" style="width:800px;">
+                <img src="ViolinScalePlot.png" style="width:900px;">
+            </div>
+            <div align="center">
+            	todo
+            </div>
+            <hr />			</section>
+                                    <div align="center">
+            	<img src="PianoRiff.png" style="width:800px;">
+                <img src="PianoRiffPlot.png" style="width:900px;">
+            </div>
+            <div align="center">
+            OverTone transcribed this piano riff perfectly. The fact that we initially tuned our parameters for piano may have contributed to this high accuracy.
+            </div>
+            <hr />
+                        <div align="center">
+            	<img src="TrumpetScale.png" style="width:800px;">
+                <img src="TrumpetScalePlot.png" style="width:900px;">
+            </div>
+            <div>
+            OverTone transcribed this sample reasonably well, with minor errors in rhythm and pitch in the first two beats. When first sampling brass instruments, we discovered that there were additional overtones we had to filter out, which we hadn't seen on piano or woodwind instruments.
+            </div>
+            <div align="center">
+            	<img src="TromboneScale.png" style="width:800px;">
+                <img src="TromboneScalePlot.png" style="width:900px;">
+            </div>
+                                    <div align="center">
+            	<img src="VoiceScale.png" style="width:800px;">
+                <img src="VoiceScalePlot.png" style="width:1200px;">
+            </div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+
+						<div class="row">
+					<div class="row">
+						<div class="8u 12u$(medium)">
+							<ul class="copyright">
+								<li>&copy; OverTone. All rights reserved.</li>
+								<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+								<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+							</ul>
+						</div>
+
+				</div>
+			</footer>
+
+	</body>
+</html>
