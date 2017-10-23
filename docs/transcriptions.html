@@ -30,7 +30,8 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li><a href="generic.html">Media</a></li>
+<li><a href="transcriptions.html">Transcriptions</a></li>
+						<li><a href="media.html">Media</a></li>
 						<li><a href="https://github.com/jeremycryan/OverTone">Source Code</a></li>
 											</ul>
 				</nav>
@@ -45,14 +46,15 @@
 						<p>Testing OverTone with a variety of instruments.</p>
 					</header>
                     <div align="center">
-                    For each instrument, the original part is shown, followed by OverTone's transcription.
+                    For each instrument, the original part is shown first, followed by OverTone's transcription.
                     </div>
+                <hr />
 				</div>
                                         <div align="center">
             	<img src="PiccoloScale.png" style="width:800px;">
                 <img src="PiccoloScalePlot.png" style="width:900px;">
-                <div>
-OverTone's piccolo transcription was quite accurate, with only one error where an eigth note was lengthened to a quarter note. This may be because our algorithm falsely detected an additional foot tap.
+                <div class="container" style="text-align:center">
+OverTone's piccolo transcription was quite accurate, with only one error when an eigth note was lengthened to a quarter note. This may be because our algorithm falsely detected an additional foot tap.
                 </div>
                 <hr />
             </div>
@@ -60,22 +62,22 @@ OverTone's piccolo transcription was quite accurate, with only one error where a
             	<img src="FluteScale.png" style="width:800px;">
                 <img src="FluteScalePlot.png" style="width:900px;">
             </div>
-            <div align="center">
-            OverTone perfectly transcribed the notes and rhythms for the flute scale. The quarter notes were interpreted as eigth notes and eigth rests because the musician played them in a short style.
+            <div class="container" style="text-align:center">
+            OverTone perfectly transcribed the notes and rhythms for the flute scale. The quarter notes were interpreted as eigth notes and eighth rests because the musician played them in a short style.
             </div>
-            <hr />	
+            <hr />	<div align="center">
                         	<img src="ViolinScale.png" style="width:800px;">
                 <img src="ViolinScalePlot.png" style="width:900px;">
             </div>
-            <div align="center">
-            	todo
+            <div class="container" style="text-align:center">
+            	OverTone interpreted several of the violin's quarter notes as two separate, shorter notes, possibly because the violin's sound decayed more slowly than other instruments. Additionally, one of the notes near the end was dropped down several steps, because the algorithm falsely identified a lower frequency spike.
             </div>
             <hr />			</section>
                                     <div align="center">
             	<img src="PianoRiff.png" style="width:800px;">
                 <img src="PianoRiffPlot.png" style="width:900px;">
             </div>
-            <div align="center">
+            <div class="container" style="text-align:center">
             OverTone transcribed this piano riff perfectly. The fact that we initially tuned our parameters for piano may have contributed to this high accuracy.
             </div>
             <hr />
@@ -83,17 +85,22 @@ OverTone's piccolo transcription was quite accurate, with only one error where a
             	<img src="TrumpetScale.png" style="width:800px;">
                 <img src="TrumpetScalePlot.png" style="width:900px;">
             </div>
-            <div>
+            <div class="container" style="text-align:center">
             OverTone transcribed this sample reasonably well, with minor errors in rhythm and pitch in the first two beats. When first sampling brass instruments, we discovered that there were additional overtones we had to filter out, which we hadn't seen on piano or woodwind instruments.
-            </div>
+            </div>                <hr />
             <div align="center">
             	<img src="TromboneScale.png" style="width:800px;">
                 <img src="TromboneScalePlot.png" style="width:900px;">
             </div>
+<div class="container" style="text-align:center">
+            OverTone had some trouble differentiating nearby notes on trombone. This may be due the instrument's tuning, as well as the reduced frequency resolution available at lower frequencies over a short time interval.
+            </div>                <hr />
                                     <div align="center">
             	<img src="VoiceScale.png" style="width:800px;">
                 <img src="VoiceScalePlot.png" style="width:1200px;">
-            </div>
+            </div><div class="container" style="text-align:center">
+            OverTone's worst performance occurs when transcribing singing. Even though we had our musician sing notes instead of words, we saw excessive variation in perceived pitch, as well as many notes in the lower range that were masked by their overtones.
+            </div>                <br>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -103,7 +110,8 @@ OverTone's piccolo transcription was quite accurate, with only one error where a
 					<div class="row">
 						<div class="8u 12u$(medium)">
 							<ul class="copyright">
-								<li>&copy; OverTone. All rights reserved.</li>
+								<li>&copy; OverTone. All rights reserved.</li><li>A project by Paul Nadan and Jeremy Ryan.</li>
+
 								<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
 								<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
 							</ul>
